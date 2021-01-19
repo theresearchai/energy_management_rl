@@ -1,0 +1,85 @@
+---
+title: "draft_outline"
+author: "Felipe Buchbinder, Shota Takeshima, Young Kyung Kim"
+date: "10/16/2020"
+output: pdf_document
+---
+
+**Working Title:** Deep Reinforcement Learning for Power System Service Restoration
+
+**Authors:** Felipe Buchbinder, Shota Takeshima, Young Kyung Kim
+
+**Unmet Need:** Replicating original study and implementing multi-agent model
+
+**Hypothesis/Goal/Aim:** Our goal is to implement multi-agent reinforcement model to build better model. 
+
+**Objectives with (short, one-sentence) justification:** build an algorithm that could outperform then the original one, especially in generability. This problem is relevant given that managing power grid is a fundamental, yet highly complex task, that tends to become increasingly dominated by artificial intelligence, particularly with the rise of Smart Cities.
+
+**Audience:** researchers
+
+**Style:** Academic paper(planning to submit the paper to conference)
+
+# Deep Reinforcement Learning for Power System Service Restoration
+
+## Abstract
+
+(Place holder; to be written only after rest of paper is complete and not in the outline)
+
+## Introduction
+
+Electrical power grids are an essential, yet extremely complicated infrastructure of city life. 
+The task of maintaining or restoring the stability of power generation and distribution (in the event of a targetted attack or unintentional failure) is therefore a very important one. Many methods have been developed to address this problem, all of which required manual planning or interruptions. However, there are limitations to manual planning, as humans have limits on processing the huge amount of information needed to model such large and complex systems as the power grids of modern cities. Thus, scholars have started to look into reinforcement learning models that would identify the patterns of the enviroment to make a optimal decisions for maintaining or restoring the stability of power generation. Considering the development of various different techniques in reinforcement learning, there is room for more improvement in building a better model that would make optimal decisions. This paper makes a contribution to extant literature by providing one such model.
+
+
+## Literature Review
+
+### Possible paper to discuss in this section
+
+- Power grids and issues in assuring stability of generation and distribution. Smart cities, and a view of the future.
+- City Learn (simulation environment)
+- Reinforcement learning for demand response: A review of algorithms and modeling techniques
+- Fusing TensorFlow with building energy simulation for intelligent energy management in smart cities
+- Balancing comfort and energy consumption of a heat pump using batch reinforcement learning with fitted Q-iteration
+- need to look at more
+
+## Data
+
+- Describe the environment(especially about what kinds of data are generated from the environment)
+- Describe about different parameters for the environment(for example explain about region parameter)
+- Describe who is the agent. Describe what are the possible actions. Describe how is reward calculated.
+- Detail number of simulations (and parameters) actually employed. Brief descriptive statistics.
+
+## Methods
+
+- Description of models
+
+* - Soft actor-critic
+* - Single agent soft actor-critic
+* - Need to explore more
+
+- Evaluation of models
+
+* - consider different cost models
+* - consider different baselines
+
+## Results
+
+- Compare the results of all models. 
+
+## Figures/tables
+
+### example of table that summarize statistics for the environment 
+| Tables   |      demand   |  storation | net |
+|----------|:-------------:|-----------:|----:|
+| region 1 |  3.12         | 2.80       | 0   |
+| region 2 |  2.83         | 3.12       | 0.29|
+| region 3 |  2.29         | 2.50       | 0.21|
+
+### plot that compares different reinforcement methods
+![Example of plot](figures/example_plot.png)
+
+## Conclusion/Discussion
+
+We will mention about the limitation of our model and talk about what kind of different methods we could possibly consider in the future. 
+We will also mention about limitation in environment.It would be great if we could find more environment to make our model more generable. 
+

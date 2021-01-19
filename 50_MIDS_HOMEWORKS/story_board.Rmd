@@ -1,0 +1,54 @@
+---
+title: "Storyboard"
+author: "Felipe Buchbinder, Shota Takeshima, Young Kyung Kim"
+date: "9/9/2020"
+output: pdf_document
+---
+
+# Storyboard
+# Epic 1
+
+We aim to use reinforcement learning to build a model that can assist actors managing a power grid system to maintain the stability of power generation and distribution in the event of an attack or failure of a small portion of the power grid. Through building the model we are expected to write paper and submit to the conference. 
+
+## Theme 1.1
+
+We need to first learn reinforcement learning and different technques in order to build a efficient model. 
+
+### Story 1.1.1
+We are going to take some video lecture provided by different institutions.
+
+#### Status
+We have been watching 6 lectures. 
+
+### Story 1.1.2
+We are going to meet with our clients to discuss about what we learned. Clients will teach us on topics in more detail that we are confused about.
+
+
+## Theme 1.2
+
+We need to get familiarity with simulators like city-learn. 
+
+### Story 1.2.1
+
+We will first do some eda to understand how city-learn works. 
+
+## Theme 1.3
+
+We will start implementing algorithms into city-learn or different simulators and evaluate the performance for each algorithms. 
+
+### Story 1.3.1
+
+We will read different most updated papers on reinforcement learning and apply those model into our environment. 
+
+## Theme 1.4
+
+We will start writing our results into a paper for submission in conference
+
+### Story 1.4.1
+
+Start reading relevant research papers to write introduction
+
+### Story 1.4.2
+
+Start visualzing our results for paper
+
