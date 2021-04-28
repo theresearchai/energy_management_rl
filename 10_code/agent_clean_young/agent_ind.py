@@ -77,6 +77,9 @@ class RL_Agents_Coord:
         self.observation_spaces = {uid : o_space for uid, o_space in zip(building_ids, observation_spaces)}
         
         # Optimizers/Loss using the Huber loss
+        '''
+        alert
+        '''
         self.soft_q_criterion = nn.SmoothL1Loss()
         
         # device
@@ -95,7 +98,9 @@ class RL_Agents_Coord:
         for uid in self.energy_size_coef:
             self.energy_size_coef[uid] = self.energy_size_coef[uid]/self.total_coef
         
-        
+        '''
+        alert
+        '''
         # creating empty dictionary for replay buffer and neural network on each building to track
         self.replay_buffer, self.reg_buffer, self.soft_q_net1, self.soft_q_net2, self.target_soft_q_net1, self.target_soft_q_net2, self.policy_net, self.soft_q_optimizer1, self.soft_q_optimizer2, self.policy_optimizer, self.target_entropy, self.alpha, self.log_alpha, self.alpha_optimizer, self.pca, self.encoder, self.encoder_reg, self.state_estimator, self.norm_mean, self.norm_std, self.r_norm_mean, self.r_norm_std, self.log_pi_tracker = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
         
@@ -103,6 +108,9 @@ class RL_Agents_Coord:
         for uid in building_ids:
             # information sharing
             # self.state_estimator[uid] = GradientBoostingRegressor()
+            '''
+            alert
+            '''
             self.critic1_loss_[uid], self.critic2_loss_[uid], self.actor_loss_[uid], self.alpha_loss_[uid], self.alpha_[uid], self.q_tracker[uid], self.log_pi_tracker[uid] = [], [], [], [], [], [], []
             # seems like encoder is for setting up environment stuff
             self.encoder[uid] = []
@@ -185,18 +193,30 @@ class RL_Agents_Coord:
             # PCA will reduce the number of dimensions of the state space to 2/3 of its the original size
             # if self.information_sharing:
             #     state_dim = int((pca_compression)*(2 + len([j for j in np.hstack(self.encoder[uid]*np.ones(len(self.observation_spaces[uid].low))) if j != None])))
-            state_dim = int((pca_compression)*(len([j for j in np.hstack(self.encoder[uid]*np.ones(len(self.observation_spaces[uid].low))) if j != None])))
-                
-            action_dim = self.action_spaces[uid].shape[0]
+            '''
+            alert!!!!!
+            '''
+            #state_dim = int((pca_compression)*(len([j for j in np.hstack(self.encoder[uid]*np.ones(len(self.observation_spaces[uid].low))) if j != None])))
+            '''
+            alert!!!!!
+            '''   
+            #action_dim = self.action_spaces[uid].shape[0]
             self.alpha[uid] = 0.2
-            
-            self.pca[uid] = PCA(n_components = state_dim)
+            '''
+            alert!!!!!
+            '''
+            #self.pca[uid] = PCA(n_components = state_dim)
             
             self.replay_buffer[uid] = ReplayBuffer(int(replay_buffer_capacity))
 
             # information sharing
             # self.reg_buffer[uid] = RegressionBuffer(int(regression_buffer_capacity))
             
+            '''
+            alert policy
+            '''
+
+            # making new function from initalizting the network
             # init networks for each policy
             self.soft_q_net1[uid] = SoftQNetwork(state_dim, action_dim, hidden_dim).to(self.device)
             self.soft_q_net2[uid] = SoftQNetwork(state_dim, action_dim, hidden_dim).to(self.device)
@@ -223,14 +243,22 @@ class RL_Agents_Coord:
             
     def select_action(self, states, deterministic=False):
         
+        # delete exploration?
+        '''
+            alert
+        '''
         self.time_step += 1
         explore = self.time_step <= self.exploration_period
         
         n_iterations = self.iterations_as
         
         action_order = np.array(range(len(self.building_ids)))
-        np.random.shuffle(action_order)
+        #np.random.shuffle(action_order)
         
+        # information sharing 
+        '''
+        alert
+        '''
         _building_ids = [self.building_ids[i] for i in action_order]
         _building_ids_next = [self.building_ids[action_order[(i+1)%len(action_order)]] for i in range(len(action_order))]
         _states = [states[i] for i in action_order]
@@ -292,9 +320,15 @@ class RL_Agents_Coord:
                 state_ = np.array([j for j in np.hstack(self.encoder[uid]*state) if j != None])
                 
                 state_ = (state_  - self.norm_mean[uid])/self.norm_std[uid]
-                state_ = self.pca[uid].transform(state_.reshape(1,-1))[0]
+                '''
+                alert
+                '''
+                # state_ = self.pca[uid].transform(state_.reshape(1,-1))[0]
                 state_ = torch.FloatTensor(state_).unsqueeze(0).to(self.device)
                 
+                '''
+                alert
+                '''
                 if deterministic is False:
                     act, _, _ = self.policy_net[uid].sample(state_)
                 else:
@@ -354,7 +388,9 @@ class RL_Agents_Coord:
             #         k += 1
             # else:
         
-                
+    '''
+    Change the name of the function
+    '''       
     # information sharing    
     # def add_to_buffer(self, states, actions, rewards, next_states, done, coordination_vars, coordination_vars_next):
     def add_to_buffer(self, states, actions, rewards, next_states, done):
@@ -384,13 +420,23 @@ class RL_Agents_Coord:
                 # Executed during the training phase. States and rewards pushed into the replay buffer are normalized and processed using PCA.
                 if self.pca_flag[uid] == 1:
                     o = (o - self.norm_mean[uid])/self.norm_std[uid]
-                    o = self.pca[uid].transform(o.reshape(1,-1))[0]
+                    '''
+                    alert
+                    '''
+                    # o = self.pca[uid].transform(o.reshape(1,-1))[0]
                     o2 = (o2 - self.norm_mean[uid])/self.norm_std[uid]
-                    o2 = self.pca[uid].transform(o2.reshape(1,-1))[0]
+                    '''
+                    alert
+                    '''
+                    # o2 = self.pca[uid].transform(o2.reshape(1,-1))[0]
                     r = (r - self.r_norm_mean[uid])/self.r_norm_std[uid]
                     
                 self.replay_buffer[uid].push(o, a, r, o2, done)
             
+            '''
+            unclear
+            '''
+
             if self.time_step >= self.start_regression and (self.regression_flag[uid] < 2 or self.time_step % self.regression_freq == 0):
                 # if self.information_sharing:
                 #     # Fit regression model for the first time.
@@ -402,6 +448,9 @@ class RL_Agents_Coord:
         if self.time_step >= self.start_training and self.batch_size <= len(self.replay_buffer[self.building_ids[0]]):
             for uid in self.building_ids:
                 # This code only runs once. Once the random exploration phase is over, we normalize all the states and rewards to make them have mean=0 and std=1, and apply PCA. We push the normalized compressed values back into the buffer, replacing the old buffer.
+                '''
+                pca part we might need delete some parts
+                '''
                 if self.pca_flag[uid] == 0:
                     X = np.array([j[0] for j in self.replay_buffer[uid].buffer])
                     self.norm_mean[uid] = np.mean(X, axis=0)
@@ -411,7 +460,9 @@ class RL_Agents_Coord:
                     R = np.array([j[2] for j in self.replay_buffer[uid].buffer])
                     self.r_norm_mean[uid] = np.mean(R)
                     self.r_norm_std[uid] = np.std(R)/self.reward_scaling + 1e-5
-
+                    '''
+                    delete
+                    '''
                     self.pca[uid].fit(X)
                     new_buffer = []
                     for s, a, r, s2, dones in self.replay_buffer[uid].buffer:
@@ -423,6 +474,12 @@ class RL_Agents_Coord:
                     self.pca_flag[uid] = 1
                     
             # for _ in range(1 + max(0, self.time_step - 8760)//5000):
+
+            '''
+            make it into seperate function
+
+            MAML 
+            '''
             for _ in range(self.update_per_step):
                 for uid in self.building_ids:
                     state, action, reward, next_state, done = self.replay_buffer[uid].sample(self.batch_size)

@@ -1,4 +1,3 @@
-
 # Deep Reinforcement Learning for Power System Service Restoratio
 
 Demand response can help buildings play an active role in the generation and storage of electricity by coordinating with each other to increase demand flexibility and provide load shaping capabilities. For this objective, in this research, we focus on proposing and implementing reinforcement learning (RI) algorithms that each agent manages each building and they cooperatively control the energy storage communicating with each other. As a simulation environment. we took advantage of [CityLearn](https://sites.google.com/view/citylearnchallenge).
@@ -12,6 +11,8 @@ Demand response can help buildings play an active role in the generation and sto
   * Story Boad: story_board.pdf
   * EDA Report: First EDA Report.pdf
 * 50_MIDS_HOMEWORKS: assigned homework we submitted in the past
+  * GoalsAndReports
+  * [Paper: Final paper due on Apr 4](https://gitlab.oit.duke.edu/duke-mids/workingprojectrepositories/2020-2021/power-grid/-/blob/master/50_MIDS_HOMEWORKS/Paper/Capstone_Power_Grid_2nd_Semester_Paper.pdf)
 
 ## Team
 
