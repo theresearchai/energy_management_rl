@@ -12,7 +12,7 @@ Demand response can help buildings play an active role in the generation and sto
   * EDA Report: First EDA Report.pdf
 * 50_MIDS_HOMEWORKS: assigned homework we submitted in the past
   * GoalsAndReports
-  * [Paper: Final paper due on Apr 4](https://gitlab.oit.duke.edu/duke-mids/workingprojectrepositories/2020-2021/power-grid/-/blob/master/50_MIDS_HOMEWORKS/Paper/Capstone_Power_Grid_2nd_Semester_Paper.pdf)
+  * [Paper: Final paper due on Apr 4](https://github.com/theresearchai/energy_management_rl/blob/main/50_MIDS_HOMEWORKS/Paper/Capstone_Power_Grid_2nd_Semester_Paper.pdf)
 
 ## Team
 
